@@ -1,29 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {
+  Card,
+  Image,
+  Icon,
+  Divider,
+  Table,
+  Button,
+  Modal,
+} from 'semantic-ui-react';
 
-import { Card, Image, Icon, Divider, Tab } from 'semantic-ui-react';
+import RecipeModal from './RecipeModal';
 
-function CardRecipe({recipe}) {
+function CardRecipe({ recipe }) {
+  const [showModal, setShowModal] = useState(false);
 
-    return(
-        <div>
-            <Card>
-                <Image src={recipe.picture_link} wrapped ui={false} size ="small" loading="lazy"/>
-                <Card.Header>{recipe.Name}</Card.Header>
-                <Card.Content extra>
-                    <a floated="left">
-                        <Icon name='clock' />
-                        Cook Time: {recipe.cook_time_min}
-                    </a>
-                    <a floated="right">
-                        <Icon name='user' />
-                        Servings: {recipe.servings}
-                    </a>
-                </Card.Content>
-            </Card>
+  return (
+    <div>
+      <Card>
+        <Image
+          src={recipe.picture_link}
+          style={{ width: 'auto', height: '250px' }}
+        />
+        <Card.Content extra>
+          <Table>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell textAlign="center" colspan="2">
+                  {recipe.Name}
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>
+                  <Icon loading name="clock" />
+                  {recipe.cook_time_min}min
+                </Table.Cell>
+                <Table.Cell textAlign="right">
+                  <Icon name="user" />
+                  {recipe.servings}persons
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>
+                  <Icon name="food" />
+                  {recipe.diet}
+                </Table.Cell>
+                <Table.Cell textAlign="right">
+                  <Button
+                    color="teal"
+                    onClick={() => {
+                      setShowModal(true);
+                    }}
+                  >
+                    <Icon name="book" />
+                    Details
+                  </Button>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        </Card.Content>
+      </Card>
 
-            <Divider/>
-        </div>
-    )
+      {showModal && (
+        <Modal
+          closeIcon
+          closeOnDimmerClick
+          centered
+          onClose={() => setShowModal(false)}
+          open={showModal}
+        >
+          <Modal.Content scrolling>
+            <RecipeModal recipe={recipe} />
+          </Modal.Content>
+        </Modal>
+      )}
+
+      <Divider hidden />
+    </div>
+  );
 }
 
 export default CardRecipe;

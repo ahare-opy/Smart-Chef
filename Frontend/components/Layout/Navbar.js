@@ -14,7 +14,6 @@ function Navbar() {
       <Image
         src="https://i.postimg.cc/XY1ZhFft/Logo-Makr-9sa-SO5.png"
         size="tiny"
-        circular
       />
       <Container text>
         <Link href="/login">

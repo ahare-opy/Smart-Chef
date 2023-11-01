@@ -14,8 +14,9 @@ import {
   FooterMessage,
 } from '../components/Common/WelcomeMessage';
 import ImageDropDiv from '../components/Common/ImageDropDiv';
-import baseUrl from '../utils/baseUrl';
-//import { registerUser } from '../utils/authUser';
+import baseURL from '../utils/baseURL';
+import { registerUser } from '../utils/authUser';
+import uploadPic from '../utils/upload-pic-to-cloudinary';
 
 function SingUp() {
   const [user, setUser] = useState({
@@ -59,28 +60,26 @@ function SingUp() {
   }, [email]);
 
   const checkEmail = async () => {
-    //console.log(email);
-    /*setUserEmailLoading(true);
+    console.log(email);
+    setUserEmailLoading(true);
     let res;
     try {
-      res = await axios.get(`${baseUrl}/api/v1/signup/${email}`);
+      res = await axios.get(`${baseURL}/api/v1/signup/${email}`);
       //console.log(res);
 
       if (errorMessage != null) setErrorMsg(null);
 
-      const checkEmail = email.split('@');
-      //console.log(res.data);
-      if (res.data == 'Available' && checkEmail[1] === 'northsouth.edu') {
+      
+
+      if (res.data == 'Available') {
         setUserEmailAvailable(true);
-        //console.log(email);
         setUser((prev) => ({ ...prev, email: email }));
-        //console.log(user);
       }
     } catch (error) {
       setErrorMessage('Email Not Accepted');
       setUserEmailAvailable(false);
     }
-    setUserEmailLoading(false);*/
+    setUserEmailLoading(false);
   };
 
   useEffect(() => {
@@ -96,7 +95,7 @@ function SingUp() {
   }, [user]);
 
   const handleSubmit = async (e) => {
-    /*e.preventDefault();
+    e.preventDefault();
     setFormLoading(true);
 
     let profilePicUrl;
@@ -110,8 +109,8 @@ function SingUp() {
       return setErrorMessage('Error Uploading Image');
     }
 
-    //console.log(user);
-    await registerUser(user,profilePicUrl, setErrorMessage, setFormLoading);*/
+    console.log(user);
+    await registerUser(user,profilePicUrl, setErrorMessage, setFormLoading);
   };
 
   return (

@@ -16,7 +16,7 @@ import {
   FooterMessage,
 } from '../components/Common/WelcomeMessage';
 
-//import { loginUser } from '../utils/authUser';
+import { loginUser } from '../utils/authUser';
 
 function Login() {
   const [user, setUser] = useState({
@@ -40,9 +40,9 @@ function Login() {
   const [submitDisabled, setSubmitDisabled] = useState(true);
 
   const handleSubmit = async (e) => {
-    /*e.preventDefault();
+    e.preventDefault();
 
-    await loginUser(user, setErrorMessage, setFormLoading);*/
+    await loginUser(user, setErrorMessage, setFormLoading);
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function Login() {
   }, []);
 
   const responseGoogle = (response) => {
-    console.log(response);
+    //console.log(response);
   };
 
   return (

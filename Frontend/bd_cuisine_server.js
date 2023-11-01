@@ -21,7 +21,9 @@ nextApp.prepare().then(() => {
   //app.use(require('cookie-parser'));
 
   app.use('/api/v1/recipe', require('./api/recipeRoute'));
-  
+  app.use('/api/v1/login', require('./api/loginRoute'));
+  app.use('/api/v1/signup', require('./api/signupRoute'));
+  app.use('/api/v1/user', require('./api/userRoute'));
 
   app.all('*', (req, res) => handle(req, res));
 

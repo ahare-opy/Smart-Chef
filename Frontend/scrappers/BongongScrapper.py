@@ -1,5 +1,4 @@
 #Bong Gong
-
 from bs4 import BeautifulSoup
 import requests
 import re
@@ -8,29 +7,14 @@ import openpyxl
 from translate import Translator
 
 link = str(input('Enter the link: '))
-type = str(input("lunch,dinner(1)/ snacks(2)/ snacks,lunch,dinner(3)/ dessert(4)? : "))
-diet = str(input('vegetarian(1)/non-veg(2)? : '))
-
-if(type == '1'):
-    type='lunch,dinner'
-elif(type == '2'):
-    type='snacks'
-elif(type == '3'):
-    type='snacks,lunch,dinner'
-elif(type == '4'):
-    type='dessert'
-
-if(diet == '1'):
-    diet='vegetarian'
-elif(diet == '2'):
-    diet='non-veg'
 
 html_texts = requests.get(link).text
 
 soup = BeautifulSoup(html_texts, 'lxml')
 
 #find the name of the recipe
-name = soup.find('div', class_='recipe-title')
+name = soup.find('div', class_='rich-text-block recipe-process w-richtext')
+
 name = name.text.strip()
 
 attr = soup.findAll('span', class_='attr-heading-value')

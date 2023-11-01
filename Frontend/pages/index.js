@@ -1,38 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import baseUrl from '../utils/baseUrl';
+import baseURL from '../utils/baseURL';
 import axios from 'axios';
 import CardRecipe from '../components/Recipe/CardRecipe';
-import { Card } from 'semantic-ui-react'
- 
-function index(){
-    const [recipes, setRecipes] = useState([]);
+import { Card, Divider } from 'semantic-ui-react';
 
-    useEffect(() => {
-        (async () => {
-            let res;
+function index() {
+  const [recipes, setRecipes] = useState([]);
 
-            try{
-                res = await axios.get(`${baseUrl}/api/v1/recipe`);
+  useEffect(() => {
+    (async () => {
+      let res;
 
-                setRecipes(res.data.recipe);
-            } catch (error) {
-                console.log(error);
-                ('Error Searching Complains');
-              }
-        })();
-    })
+      try {
+        res = await axios.get(`${baseURL}/api/v1/recipe`);
 
-    return(
-        <div>
-            <Card.Group divider>
-                {recipes.map((recipe) => (
-                    <CardRecipe
-                        recipe={recipe}
-                    />
-                ))}
-            </Card.Group>
-        </div>
-    );
+        setRecipes(res.data.recipe);
+      } catch (error) {
+        console.log(error);
+        ('Error Searching Complains');
+      }
+    })();
+  }, [recipes]);
+
+  return (
+    <div>
+      <Card.Group divider>
+        {recipes.map((recipe) => (
+          <CardRecipe recipe={recipe} />
+        ))}
+      </Card.Group>
+    </div>
+  );
 }
 
 export default index;

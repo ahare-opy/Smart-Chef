@@ -2,18 +2,19 @@ import React, { createRef, useLayoutEffect } from 'react';
 import { withRouter } from 'next/router';
 import HeadTags from './HeadTags';
 import Navbar from './Navbar';
+import SideMenu from './SideMenu';
 import {
   Container,
   Visibility,
   Grid,
   Sticky,
   Ref,
-  Divider,
-  Segment,
   Menu,
   Image,
-  Header,
+  Segment,
+  Rail,
 } from 'semantic-ui-react';
+import _ from 'lodash';
 import nProgress from 'nprogress';
 import Router from 'next/router';
 
@@ -24,88 +25,89 @@ function Layout({ children, user, ctx }) {
   Router.onRouteChangeComplete = () => nProgress.done();
   Router.onRouteChangeError = () => nProgress.done();
 
-  var check = false;
-  if (user != undefined) {
-    if (!user.typeOfUser) check = true;
-  }
+  /*return(
+    <Container>
+      <HeadTags />
 
-  if (check) {
-    return (
-      <>
-        <HeadTags />
-        <Navbar />
+      {user ? (
+      <Container style = {{ marginLeft: '1rem', marginRight: '1rem' }}>
+        <Menu fluid borderless>
+          <Image src='https://i.postimg.cc/XY1ZhFft/Logo-Makr-9sa-SO5.png' size='tiny' />
+          <Container text position="center">
+                <Menu.Item as="h1" color="violet">
+                  Welcome to BD Cuisine, {user.name}
+                </Menu.Item>
+          </Container>
+        </Menu>
 
-        <Container text style={{ paddingTop: '1rem' }}>
-          {children}
-        </Container>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <HeadTags />
+        <Ref innerRef={contextRef}>
+          <Grid centered columns={2}>
+            <Grid.Column width={2}>
+              <Rail position='left'>
+                <Sticky context={contextRef}>
+                  <SideMenu />
+                </Sticky>
+              </Rail>
+            </Grid.Column>
 
-        {user ? (
-          <>
-            <div style={{ marginLeft: '1rem', marginRight: '1rem' }}>
-              <Menu fluid borderless>
-                <Image
-                  src="https://i.postimg.cc/XY1ZhFft/Logo-Makr-9sa-SO5.png"
-                  size="tiny"
-                  circular
-                />
+            <Grid.Column width={13}>
+              <Visibility context={contextRef}>{children}</Visibility>
+            </Grid.Column>
+          </Grid>
+        </Ref>
+      </Container>) : (<Container></Container>)}
+    </Container>
+  )*/
 
-                <Container text position="center">
-                  <Menu.Item as="h1" color="violet">
-                    Welcome to BD Cuisine, {user.name}
-                  </Menu.Item>
-                </Container>
-              </Menu>
+  return (
+    <>
+      <HeadTags />
 
-              <Ref innerRef={contextRef}>
-                <Grid>
-                  <Grid.Column floated="left" width={2}>
-                    <Sticky content={contextRef}>
-                      
-                    </Sticky>
-                  </Grid.Column>
+      {user ? (
+        <>
+          <div style={{ marginLeft: '1rem', marginRight: '1rem' }}>
+            <Menu fluid borderless>
+              <Image
+                src="https://i.postimg.cc/XY1ZhFft/Logo-Makr-9sa-SO5.png"
+                size="tiny"
+              />
+              <Container text position="center">
+                <Menu.Item as="h1" color="violet">
+                  Welcome to BD Cuisine, {user.name}
+                </Menu.Item>
+              </Container>
+            </Menu>
 
-                  <Grid.Column width={13}>
-                    <Visibility context={contextRef}>{children}</Visibility>
-                  </Grid.Column>
-                </Grid>
-              </Ref>
-            </div>
-          </>
-        ) : (
-          <>
-            {' '}
-            <Navbar />
             <Ref innerRef={contextRef}>
-                <Grid>
-                    <Grid.Column floated="left" width={1}>
-                        <Sticky content={contextRef}>
-                      
-                        </Sticky>
-                    </Grid.Column>
+              <Grid>
+                <Grid.Column floated="left" width={2}>
+                  <Sticky context={contextRef}>
+                    <SideMenu user />
+                  </Sticky>
+                </Grid.Column>
 
-                    <Grid.Column floated='center' width={13}>
-                        <Visibility context={contextRef}>{children}</Visibility>
-                    </Grid.Column>
+                <Grid.Column floated="center" width={13}>
+                  <Visibility context={contextRef}>{children}</Visibility>
+                </Grid.Column>
+              </Grid>
+            </Ref>
+          </div>
+        </>
+      ) : (
+        <>
+          {' '}
+          <Navbar />
+          <Grid>
+            <Grid.Column width={1} floated="left"></Grid.Column>
 
-                    <Grid.Column floated="right" width={1}>
-                        <Sticky content={contextRef}>
-                      
-                        </Sticky>
-                    </Grid.Column>
-                </Grid>
-              </Ref>
-            {' '}
-          </>
-        )}
-      </>
-    );
-  }
+            <Grid.Column width={15}>{children}</Grid.Column>
+
+            <Grid.Column width={1} floated="right"></Grid.Column>
+          </Grid>{' '}
+        </>
+      )}
+    </>
+  );
 }
 
 export default Layout;
