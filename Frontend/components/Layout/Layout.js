@@ -68,7 +68,7 @@ function Layout({ children, user, ctx }) {
           <div style={{ marginLeft: '1rem', marginRight: '1rem' }}>
             <Menu fluid borderless>
               <Image
-                src="https://i.postimg.cc/XY1ZhFft/Logo-Makr-9sa-SO5.png"
+                src="https://i.postimg.cc/QtCbLcTh/cute-robot-chef-hat-holding-serving-cloche-modern-robotic-character-cooking-kitchen-artificial-intel.png"
                 size="tiny"
               />
               <Container text position="center">

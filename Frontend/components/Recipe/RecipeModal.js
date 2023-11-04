@@ -172,16 +172,18 @@ function RecipeModal({ recipe }) {
     (async () => {
       //let ingredientsName = ['Name', 'cook_time_min', 'diet', 'servings', 'picture_link', 'type', 'link', 'potato', 'cornstarch', 'green_chilli', 'paat_shaak', 'naga_chilli', 'red_chili', 'chilli_sauce', 'ginger', 'onion', 'garlic', 'salt', 'ghee', 'eggplant', 'lady_finger', 'turmeric_powder', 'sugar', 'honey', 'flour', 'vanilla_extract', 'chicken', 'mushroom', 'bbq_sauce', 'soy_sauce_', 'fish_oil', 'mustard_oil', 'red_chilli_flakes', 'cheese', 'cheese_powder', 'tomato', 'bun', 'beef', 'egg', 'black_salt', 'bread_crumb', 'baking_powder', 'black_pepper', 'coriander', 'tomato_sauce', 'lettuce', 'mutton', 'rice', 'moog_dal', 'bay_leaf', 'cardamom', 'cloves', 'cinnamon', 'cumin_powder', 'star_anise', 'panch_poran', 'red_chilli_powder', 'coriander_powder', 'garam_masala', 'vegetable_oil', 'walnut', 'ground_nut', 'cashew_nut', 'masoor_dal', 'carrot', 'flat_bean', 'duck', 'cauliflower', 'spring_onion', 'dried_shrimp', 'dried_laitta', 'dried_chepa', 'dried_churi', 'dried_kachki', 'yougurt', 'saffron', 'curry_powder', 'cabbage', 'chaat_masala', 'besan', 'chickpea_dal', 'kebab_spice', 'papaya', 'oats', 'yogurt', 'butter', 'vinegar', 'capsicum', 'kasuri_methi', 'mace', 'tangra', 'kala_zeera', 'sago', 'gourd', 'coconut', 'jaggery', 'semai', 'gur', 'milk', 'milk_powder', 'raisin', 'mola_fish', 'hilsha_fish', 'prawn', 'rohu_fish', 'katla_fish', 'green_banana', 'mustard', 'banana', 'green_grape', 'black_grape', 'strawberry', 'kiwi', 'pomegranate', 'apple', 'cream', 'whipped_cream', 'orange', 'katal', 'condensed_milk', 'spinach	almond', 'bitter_gourd', 'peas', 'chana_dal', 'matar_dal', 'pumpkin', 'snake_gourd', 'onion_flower', 'pointed_gourd', 'bottle_gourd', 'paprika', 'semolina', 'birayani_masala', 'olive_oil', 'rosemary', 'red_spinach', 'mustard_seed', 'rice_flour', 'cumin', 'cucumber', 'lemon', 'mint', 'chital_fish	shrimp', 'scallion', 'moolo', 'ginger_garlic_paste', 'white_pepper', 'vegetable_stock', 'long_beans', 'corn', 'toast_biscuit', 'tortilla_chips', 'bread', 'tea', 'mango', 'thai_soup_spice', 'lemon_grass', 'parshe_fish', 'onion_leaf', 'puffed_rice', 'tarmarind', 'noodle', 'chocolate', 'yeast', 'mayonnaise', 'watermelon', 'dragon_fruit'];
 
-      delete recipe._id;
-      delete recipe.Name;
-      delete recipe.cook_time_min;
-      delete recipe.diet;
-      delete recipe.servings;
-      delete recipe.picture_link;
-      delete recipe.type;
-      delete recipe.link;
+      let  rr = JSON.parse(JSON.stringify(recipe));
 
-      let rrecipe = removeZero(recipe);
+      delete rr._id;
+      delete rr.Name;
+      delete rr.cook_time_min;
+      delete rr.diet;
+      delete rr.servings;
+      delete rr.picture_link;
+      delete rr.type;
+      delete rr.link;
+
+      let rrecipe = removeZero(rr);
 
       var ingredientsName = [];
       var ingredientsValue = [];
