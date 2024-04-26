@@ -1,23 +1,17 @@
-import sys
-import traceback
+import pandas as pd
+from _datetime import datetime
 
-import pymongo
-import openpyxl
+df1 = pd.read_excel('Dhaka_Stock_Exchange_Broad_Historical_Data.xlsx')
 
-wb = openpyxl.load_workbook('Final_Recipe_Dataset.xlsx')
+c=-1
+d=0
 
-ws = wb.active
+for a in df1.Date:
+    ++c
+    try:
+        a = datetime.strptime(a, '%m-%d-%Y').date()
+        df1.Date[c].replace(a)
+    except:
+        ++d
 
-temparray = []
-for row in range(0, ws.max_row):
-    values = []
-    for col in ws.iter_cols(1, ws.max_column):
-        values.append(col[row].value)
-    temparray.append(values)
-#321
-#168
-print(temparray[0])
-
-
-
-
+print(type(df1.Date[12]), df1.Date[12])
