@@ -1,1 +1,0 @@
-{"c":["webpack"],"r":["pages/login"],"m":["./components/Common/WelcomeMessage.js","./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=%2FUsers%2Ftanviropy%2FLearning%2FCSE499%2FCSE499%2FFrontend%2Fpages%2Flogin.js&page=%2Flogin!","./node_modules/react-google-login/dist/google-login.js","./pages/login.js"]}
